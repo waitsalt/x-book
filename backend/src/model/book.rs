@@ -28,8 +28,8 @@ pub struct Book {
 #[derive(Debug, Deserialize)]
 pub struct BookSearchPayload {
     pub book_name: String,
-    pub book_author: String,
-    pub book_platform: String,
+    pub author_name: String,
+    pub platform_name: String,
     pub limit: i64,
     pub page: i64,
     pub tag: Vec<String>,
