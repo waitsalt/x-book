@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, sqlx::FromRow)]
+#[serde(rename_all = "camelCase")]
 pub struct ChapterContent {
     pub chapter_id: i64,                       // 章节 id
     pub chapter_content: String,               // 章节内容

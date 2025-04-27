@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, sqlx::FromRow)]
+#[serde(rename_all = "camelCase")]
 pub struct Collect {
     pub collect_id: i64,               // 收藏 id
     pub user_id: i64,                  // 用户 id

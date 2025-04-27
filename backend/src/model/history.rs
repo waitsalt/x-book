@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, sqlx::FromRow)]
+#[serde(rename_all = "camelCase")]
 pub struct History {
     pub history_id: i32,               // 历史记录ID
     pub user_id: i32,                  // 用户ID

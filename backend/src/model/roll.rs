@@ -2,6 +2,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, sqlx::FromRow)]
+#[serde(rename_all = "camelCase")]
 pub struct Roll {
     pub roll_id: i64,               // 卷 id
     pub roll_name: String,          // 卷名称

@@ -7,7 +7,9 @@ pub mod collect;
 pub mod comment;
 pub mod comment_reply;
 pub mod history;
+pub mod recommend;
 pub mod roll;
+pub mod score;
 pub mod user;
 pub mod util;
 
