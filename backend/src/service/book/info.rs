@@ -1,23 +1,20 @@
-use axum::extract::Path;
-
 use crate::{
     model::book::Book,
-    util::{AppResult, database::database_connect, error::AppError, response::AppResponse},
+    util::{AppResult, database::database_connect, response::AppResponse},
 };
+use axum::extract::Path;
 
 pub async fn info(Path(book_id): Path<i64>) -> AppResult<Book> {
-    let pool = database_connect();
-    let sql = format!(
-        "
+    let sql = "
         select *
-        form \"book\"
-        where book_id = {};
-        ",
-        book_id
-    );
-    let book: Book = sqlx::query_as(&sql)
+        from \"book\"
+        where book_id = $1
+        ";
+    let pool = database_connect();
+    let book: Book = sqlx::query_as(sql)
+        .bind(book_id)
         .fetch_one(pool)
         .await
-        .map_err(|_| AppError::BookNotExist)?;
+        .unwrap();
     Ok(AppResponse::success(Some(book)))
 }

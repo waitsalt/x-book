@@ -4,12 +4,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Deserialize, Serialize, sqlx::FromRow)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentReply {
-    pub comment_reply_id: i64,               // 回复 id
-    pub comment_status: i16,                 // 评论状态 0:删除 1:正常
-    pub user_id: i64,                        // 用户 id
-    pub book_id: i64,                        // 书籍 id
-    pub comment_id: i64,                     // 父评论 id
-    pub comment_content: String,             // 内容
-    pub comment_reply_create: DateTime<Utc>, // 创建时间
-    pub comment_reply_update: DateTime<Utc>, // 更新时间
+    pub comment_id: i64,                          // 父评论
+    pub comment_reply_id: i64,                    // 回复评论id
+    pub user_id: i64,                             // 用户id
+    pub comment_reply_content: String,            // 评论内容
+    pub comment_reply_praise: i64,                // 评论点赞
+    pub comment_reply_create_time: DateTime<Utc>, // 回复评论发布时间
+    pub comment_reply_update_time: DateTime<Utc>, // 回复评论更新时间
 }

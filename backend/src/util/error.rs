@@ -34,22 +34,7 @@ pub enum AppError {
     UserPhoneNotExist,
     UserPasswordError,
     UserPasswordShort,
-
-    // 书籍相关错误
-    BookExist,
-    BookNotExist,
-    BookNameExist,
-    BookAuthorExist,
-    BookPublisherExist,
-    BookISBNExist,
-    BookPriceExist,
-    BookStockExist,
-    BookCategoryExist,
-    BookDescriptionExist,
-    BookImageExist,
-    BookAuthorNotExist,
-    BookPublisherNotExist,
-    BookCategoryNotExist,
+    UserIsDeleted,
 
     // 其他问题
     Other,
@@ -70,12 +55,6 @@ impl From<config::ConfigError> for AppError {
 impl From<redis::RedisError> for AppError {
     fn from(_: redis::RedisError) -> Self {
         AppError::RedisActionError
-    }
-}
-
-impl From<sqlx::Error> for AppError {
-    fn from(_: sqlx::Error) -> Self {
-        AppError::SqlActionError
     }
 }
 
@@ -123,6 +102,7 @@ impl IntoResponse for AppError {
             AppError::UserPhoneNotExist => (StatusCode::BAD_REQUEST, 4008, "手机号不存在"),
             AppError::UserPasswordError => (StatusCode::BAD_REQUEST, 4009, "密码错误"),
             AppError::UserPasswordShort => (StatusCode::BAD_REQUEST, 4010, "密码太短"),
+            AppError::UserIsDeleted => (StatusCode::BAD_REQUEST, 4011, "用户已被删除"),
 
             // 其他问题
             // AppError::Other => (StatusCode::FORBIDDEN, 9000, "未知错误"),

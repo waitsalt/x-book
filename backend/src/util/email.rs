@@ -20,8 +20,7 @@ pub async fn captcha_email(user_email: &str) -> Result<(), AppError> {
         .arg(verify_code.clone())
         .arg("EX")
         .arg(5 * 60)
-        .query(&mut con)
-        .unwrap();
+        .query(&mut con)?;
 
     let message = Message::builder()
         .from(email_send.parse().unwrap())
@@ -49,7 +48,7 @@ pub async fn captcha_email(user_email: &str) -> Result<(), AppError> {
     };
 
     match mailer.send(&message) {
-        Ok(_) => return Ok(()),
-        Err(_) => return Err(AppError::EmailSendFail),
+        Ok(_) => Ok(()),
+        Err(_) => Err(AppError::EmailSendFail),
     }
 }
