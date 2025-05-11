@@ -1,6 +1,7 @@
 mod change_avatar_url;
 mod change_email;
 mod change_password;
+mod comment;
 mod create;
 mod delete;
 mod forget;
@@ -13,8 +14,10 @@ mod search;
 pub use change_avatar_url::change_avatar_url;
 pub use change_email::change_email;
 pub use change_password::change_password;
+pub use comment::comment;
 pub use create::create;
 pub use delete::delete;
+pub use forget::forget;
 pub use info::info;
 pub use login::login;
 pub use logout::logout;

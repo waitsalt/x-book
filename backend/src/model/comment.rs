@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "camelCase")]
 pub struct Comment {
     pub comment_id: i64,                    // 评论id
+    pub comment_reply_is: bool,             // 是否为回复评论
+    pub comment_reply_id: i64,              // 父评论
     pub user_id: i64,                       // 用户id
     pub book_id: i64,                       // 图书id
     pub comment_content: String,            // 评论内容

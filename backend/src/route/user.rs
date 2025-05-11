@@ -17,4 +17,6 @@ pub fn init() -> Router {
         .route("/change_password", post(service::user::change_password)) // 更改密码
         .route("/change_avatar_url", post(service::user::change_avatar_url)) // 更改用户头像
         .route("/change_email", post(service::user::change_email)) // 更改用户邮箱
+        .route("/comment", get(service::user::comment)) // 查看用户评论
+        .route("/forget", post(service::user::forget)) // 忘记密码
 }

@@ -36,6 +36,22 @@ pub enum AppError {
     UserPasswordShort,
     UserIsDeleted,
 
+    // 图书
+    BookExist,
+    BookNotExist,
+
+    // 收藏
+    CollectExist,
+    CollectNotExist,
+    CollectBookExist,
+    CollectBookNotExist,
+
+    // 历史
+    HistoryExist,
+    HistoryNotExist,
+    HistoryBookExist,
+    HistoryBookNotExist,
+
     // 其他问题
     Other,
 }
@@ -103,6 +119,22 @@ impl IntoResponse for AppError {
             AppError::UserPasswordError => (StatusCode::BAD_REQUEST, 4009, "密码错误"),
             AppError::UserPasswordShort => (StatusCode::BAD_REQUEST, 4010, "密码太短"),
             AppError::UserIsDeleted => (StatusCode::BAD_REQUEST, 4011, "用户已被删除"),
+
+            // 书相关错误
+            AppError::BookExist => (StatusCode::BAD_REQUEST, 5001, "书已存在"),
+            AppError::BookNotExist => (StatusCode::BAD_REQUEST, 5002, "书不存在"),
+
+            // 收藏相关问题
+            AppError::CollectExist => (StatusCode::BAD_REQUEST, 6001, "收藏列表已存在"),
+            AppError::CollectNotExist => (StatusCode::BAD_REQUEST, 6002, "收藏列表不存在"),
+            AppError::CollectBookExist => (StatusCode::BAD_REQUEST, 6003, "收藏列表中已有该书"),
+            AppError::CollectBookNotExist => (StatusCode::BAD_REQUEST, 6004, "收藏列表中没有该书"),
+
+            // 历史相关问题
+            AppError::HistoryExist => (StatusCode::BAD_REQUEST, 7001, "历史记录已存在"),
+            AppError::HistoryNotExist => (StatusCode::BAD_REQUEST, 7002, "历史记录不存在"),
+            AppError::HistoryBookExist => (StatusCode::BAD_REQUEST, 7003, "历史记录中已有该书"),
+            AppError::HistoryBookNotExist => (StatusCode::BAD_REQUEST, 7004, "历史记录中没有该书"),
 
             // 其他问题
             // AppError::Other => (StatusCode::FORBIDDEN, 9000, "未知错误"),

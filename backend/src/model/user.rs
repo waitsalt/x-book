@@ -95,6 +95,13 @@ pub struct UserSearchPayload {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+pub struct UserForgetPayload {
+    pub user_email: String,
+    pub captcha_email: String,
+    pub user_password: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
 pub struct UserClaim {
     pub iat: i64,
     pub exp: i64,
